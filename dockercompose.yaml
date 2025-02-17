@@ -1,0 +1,12 @@
+version: '3'
+services:
+  sleek-airflow:
+    image: sleek-airflow:latest
+    volumes:
+      - ./airflow:/opt/airflow
+    ports:
+      - "8080:8080"
+    command: airflow standalone
+    dns: # DNS 设置应该和 command 平级，直接在 sleek-airflow 下面
+      - 8.8.8.8 # Google 公共 DNS
+      - 8.8.4.4 # Google 公共 DNS (备用)
